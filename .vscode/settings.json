@@ -1,0 +1,47 @@
+{
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.preferences.importModuleSpecifier": "relative",
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "editor.formatOnSave": true,
+  "biome.enabled": true,
+  "[json]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "biomejs.biome",
+    "prettier.semi": false,
+    "prettier.trailingComma": "none"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "eslint.validate": ["markdown", "javascript", "typescript"],
+  "editor.codeActionsOnSave": {
+    "source.organizeImports.biome": "explicit",
+    "source.fixAll.biome": "explicit"
+  },
+  "editor.quickSuggestions": {
+    "other": true,
+    "comments": false,
+    "strings": false
+  },
+  "editor.acceptSuggestionOnCommitCharacter": true,
+  "editor.acceptSuggestionOnEnter": "on",
+  "editor.quickSuggestionsDelay": 10,
+  "editor.suggestOnTriggerCharacters": true,
+  "editor.tabCompletion": "off",
+  "editor.suggest.localityBonus": true,
+  "editor.suggestSelection": "recentlyUsed",
+  "editor.wordBasedSuggestions": "matchingDocuments",
+  "editor.parameterHints.enabled": true,
+  "files.insertFinalNewline": true
+}
