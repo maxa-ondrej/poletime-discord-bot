@@ -20,6 +20,6 @@ const make = Effect.gen(function* () {
       .add(yield* hello)
       .catchAllCause(Effect.logError),
   );
-});
+}).pipe(Effect.withLogSpan('HelloModule'));
 
 export const HelloLive = Layer.effectDiscard(make);

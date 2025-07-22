@@ -1,6 +1,6 @@
-import { Discord, Ix, UI } from 'dfx';
+import { Discord, DiscordREST, Ix, UI } from 'dfx';
 import { Effect } from 'effect';
-import { createModal } from '../../../lib/ix-manager.js';
+import { createModal } from '@/lib/ix-manager';
 
 export type ComeModalProps = {
   readonly custom_id: string;
@@ -9,6 +9,7 @@ export type ComeModalProps = {
 
 export const ComeModal = createModal(
   'come',
+  { rest: DiscordREST },
   ({ name }: ComeModalProps) => ({
     title: 'Přijdu',
     components: [
@@ -23,23 +24,35 @@ export const ComeModal = createModal(
       ]),
     ],
   }),
-  ({ session }) =>
-    Effect.succeed(
-      Ix.response({
-        type: Discord.InteractionCallbackTypes.CHANNEL_MESSAGE_WITH_SOURCE,
-        data: {
-          flags:
-            Discord.MessageFlags.IsComponentsV2 |
-            Discord.MessageFlags.Ephemeral,
-          components: [
-            UI.container({
-              accent_color: 0x00ff00,
+  ({ session, ix, dependencies }) =>
+    Effect.succeed(dependencies).pipe(
+      Effect.bind('guild', ({ rest }) => rest.getGuild(ix.custom_id)),
+      Effect.match({
+        onSuccess: () =>
+          Ix.response({
+            type: Discord.InteractionCallbackTypes.CHANNEL_MESSAGE_WITH_SOURCE,
+            data: {
+              flags:
+                Discord.MessageFlags.IsComponentsV2 |
+                Discord.MessageFlags.Ephemeral,
               components: [
-                UI.textDisplay('Thank you for your response!' + session),
+                UI.container({
+                  accent_color: 0x00ff00,
+                  components: [
+                    UI.textDisplay('Thank you for your response!' + session),
+                  ],
+                }),
               ],
-            }),
-          ],
-        },
+            },
+          }),
+        onFailure: () =>
+          Ix.response({
+            type: Discord.InteractionCallbackTypes.CHANNEL_MESSAGE_WITH_SOURCE,
+            data: {
+              flags: Discord.MessageFlags.Ephemeral,
+              content: 'An error occurred while processing your response.',
+            },
+          }),
       }),
     ),
 );
