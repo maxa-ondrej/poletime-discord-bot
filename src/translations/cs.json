@@ -1,0 +1,17 @@
+{
+  "error": {
+    "unexpected-error": "Nastala neočekávaná chyba. Zkuste to prosím znovu později."
+  },
+  "hello": {
+    "attendance": {
+      "title": "Docházka",
+      "description": "Klikněte na tlačítko níže, abyste potvrdili svou účast.",
+      "button-come": "Přijdu",
+      "button-late": "Přijdu později",
+      "button-notCome": "Nepřijdu",
+      "button-whoComes": "Kdo přijde?",
+      "response-success": "Děkujeme za potvrzení vaší účasti!",
+      "no-votes": "---"
+    }
+  }
+}

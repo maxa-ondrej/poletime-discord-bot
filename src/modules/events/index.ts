@@ -1,12 +1,13 @@
 import { Ix } from 'dfx';
 import { InteractionsRegistry } from 'dfx/gateway';
 import { Effect, Layer } from 'effect';
-import hello from './commands/hello.js';
-import { ComeButton } from './components/ComeButton.js';
-import { ComeModal } from './components/ComeModal.js';
-import { LateButton } from './components/LateButton.js';
-import { NotComeButton } from './components/NotComeButton.js';
-import { WhoComesButton } from './components/WhoComesButton.js';
+import { Events } from '@/services/events';
+import { ComeButton } from './buttons/ComeButton.js';
+import { LateButton } from './buttons/LateButton.js';
+import { NotComeButton } from './buttons/NotComeButton.js';
+import { WhoComesButton } from './buttons/WhoComesButton.js';
+import hello from './commands/create.js';
+import { ComeModal } from './modals/ComeModal.js';
 
 const make = Effect.gen(function* () {
   const registry = yield* InteractionsRegistry;
@@ -20,6 +21,6 @@ const make = Effect.gen(function* () {
       .add(yield* hello)
       .catchAllCause(Effect.logError),
   );
-}).pipe(Effect.withLogSpan('HelloModule'));
+}).pipe(Effect.withLogSpan('HelloModule'), Effect.provide(Events.Default));
 
 export const HelloLive = Layer.effectDiscard(make);

@@ -39,6 +39,7 @@
     "plugins": [{ "name": "@effect/language-service" }],
     "paths": {
       "@": ["./src/bin.js"],
+      "@/lib/*": ["./src/lib/*/index.js"],
       "@/*": ["./src/*.js"]
     }
   }
