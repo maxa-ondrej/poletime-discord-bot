@@ -2,4 +2,6 @@ app = "poletime-discord-bot"
 primary_region = "fra"
 kill_signal = "SIGTERM"
 kill_timeout = 120
-console_command = "dist/bin.cjs --token $DISCORD_TOKEN"
+
+[build]
+dockerfile = "Dockerfile"
