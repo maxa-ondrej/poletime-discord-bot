@@ -3,7 +3,3 @@ primary_region = "fra"
 kill_signal = "SIGTERM"
 kill_timeout = 120
 console_command = "dist/bin.cjs --token $DISCORD_TOKEN"
-
-[build]
-builder = "paketobuildpacks/builder:base"
-buildpacks = ["gcr.io/paketo-buildpacks/nodejs"]
